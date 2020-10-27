@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.scss';
+import Button from './components/Button/index';
 
 function App() {
   return (
@@ -16,6 +17,10 @@ function App() {
         >
           Learn React
         </a>
+        <button className='btn' onClick={() => alert('I am globally styled')}>
+          I am button 1 - Press Me
+        </button>
+        <Button />
       </header>
     </div>
   );
