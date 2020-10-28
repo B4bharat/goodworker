@@ -13,11 +13,9 @@ function LiveSearch() {
   }, []);
 
   const getResults = async (query: string) => {
-    console.log(query);
     const res = await axios(
       `https://api.themoviedb.org/3/search/movie?query=${query}&api_key=dbc0a6d62448554c27b6167ef7dabb1b`
     );
-    console.log(res);
     const resultData = await res.data.results;
     return resultData;
   };
