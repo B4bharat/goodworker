@@ -4,6 +4,8 @@ import axios from 'axios';
 import SearchListing from './SearchListing';
 import styles from './index.module.scss';
 
+import { ReactComponent as SearchIcon } from '../../assets/search.svg';
+
 function LiveSearch() {
   const [query, setQuery] = useState('');
   const [results, setResults] = useState([]);
@@ -34,7 +36,7 @@ function LiveSearch() {
     const loadResults = async () => {
       if (!query) return setResults([]);
 
-      await sleep(350);
+      await sleep(250);
       if (currentQuery) {
         const results = await getResults(query);
         setResults(results);
@@ -50,6 +52,7 @@ function LiveSearch() {
 
   return (
     <div className={styles.searchContainer}>
+      <SearchIcon className={styles.searchIcon} />
       <input
         value={query}
         ref={focusSearch}
