@@ -9,10 +9,12 @@ import { ReactComponent as SearchIcon } from '../../assets/search.svg';
 interface Props {
   url: string;
   params: any;
-  children: any;
+  handleClick: () => any;
+  children?: any;
 }
 
 function LiveSearch(props: Props) {
+  const { url, params, handleClick, children } = props;
   const [query, setQuery] = useState('');
   const [results, setResults] = useState([]);
   const focusSearch = useRef<HTMLInputElement>(null);
@@ -23,8 +25,8 @@ function LiveSearch(props: Props) {
 
   const getResults = async (query: string) => {
     props.params.query = query;
-    const res = await axios(props.url, {
-      params: props.params,
+    const res = await axios(url, {
+      params: params,
     });
     const resultData = await res.data.results;
     return resultData;
@@ -66,7 +68,7 @@ function LiveSearch(props: Props) {
         onChange={(e) => setQuery(e.target.value)}
         className={styles.searchText}
       />
-      <SearchListing results={results} children={props.children} />
+      <SearchListing results={results} children={children} handleClick={handleClick} />
     </div>
   );
 }
