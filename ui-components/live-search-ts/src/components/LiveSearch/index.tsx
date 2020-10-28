@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 
 import SearchListing from './SearchListing';
+import styles from './index.module.scss'
 
 function LiveSearch() {
   const [query, setQuery] = useState('');
@@ -53,8 +54,7 @@ function LiveSearch() {
         value={query}
         ref={focusSearch}
         onChange={(e) => setQuery(e.target.value)}
-        placeholder='Type something to search'
-        className='search-text'
+        className={styles.searchText}
       />
       <SearchListing results={results} />
     </div>

@@ -1,3 +1,19 @@
 .title {
-  margin: 0;
+  display: inline-block;
+  margin: 5px 0;
+  text-align: left;
+  // padding-left: 45rem;
+
+  font-size: 1.2rem;
+  font-weight: 500;
+  line-height: 1.8rem;
+}
+
+.placeholder {
+  display: inline-block;
+  margin-right: 5px;
+}
+
+.bottom {
+  text-align: left;
 }
