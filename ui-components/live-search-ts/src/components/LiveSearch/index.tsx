@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 
 import SearchListing from './SearchListing';
-import styles from './index.module.scss'
+import styles from './index.module.scss';
 
 function LiveSearch() {
   const [query, setQuery] = useState('');
@@ -49,7 +49,7 @@ function LiveSearch() {
   }, [query]);
 
   return (
-    <div className='search-container'>
+    <div className={styles.searchContainer}>
       <input
         value={query}
         ref={focusSearch}
