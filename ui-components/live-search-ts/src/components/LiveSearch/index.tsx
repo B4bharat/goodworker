@@ -6,7 +6,13 @@ import styles from './index.module.scss';
 
 import { ReactComponent as SearchIcon } from '../../assets/search.svg';
 
-function LiveSearch() {
+interface Props {
+  url: string;
+  params: any;
+  children: any;
+}
+
+function LiveSearch(props: Props) {
   const [query, setQuery] = useState('');
   const [results, setResults] = useState([]);
   const focusSearch = useRef<HTMLInputElement>(null);
@@ -16,9 +22,10 @@ function LiveSearch() {
   }, []);
 
   const getResults = async (query: string) => {
-    const res = await axios(
-      `https://api.themoviedb.org/3/search/movie?query=${query}&api_key=dbc0a6d62448554c27b6167ef7dabb1b`
-    );
+    props.params.query = query;
+    const res = await axios(props.url, {
+      params: props.params,
+    });
     const resultData = await res.data.results;
     return resultData;
   };
@@ -59,7 +66,7 @@ function LiveSearch() {
         onChange={(e) => setQuery(e.target.value)}
         className={styles.searchText}
       />
-      <SearchListing results={results} />
+      <SearchListing results={results} children={props.children} />
     </div>
   );
 }

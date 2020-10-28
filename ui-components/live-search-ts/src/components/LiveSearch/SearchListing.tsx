@@ -7,7 +7,7 @@ const SearchListing = (props: any) => {
   let cards = <h3>Loading...</h3>;
 
   cards = props.results?.map((item: any, ind: any) => (
-    <ListItem key={ind} item={item} />
+    <ListItem key={ind} item={item} children={props.children} />
   ));
 
   return (
