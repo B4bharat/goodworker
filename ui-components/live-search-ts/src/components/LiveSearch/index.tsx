@@ -5,17 +5,21 @@ import SearchListing from './SearchListing';
 
 function LiveSearch() {
   const [query, setQuery] = useState('');
-  const [jokes, setJokes] = useState([]);
-  const focusSearch = useRef(null);
+  const [results, setResults] = useState([]);
+  const focusSearch = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
-    focusSearch.current.focus();
+    focusSearch.current?.focus();
   }, []);
 
-  const getJokes = async (query: string, controller?: AbortController) => {
-    const res = await axios(`https://icanhazdadjoke.com/search?term=${query}`);
-    const jokesData = await res.data.results;
-    return jokesData;
+  const getResults = async (query: string) => {
+    console.log(query);
+    const res = await axios(
+      `https://api.themoviedb.org/3/search/movie?query=${query}&api_key=dbc0a6d62448554c27b6167ef7dabb1b`
+    );
+    console.log(res);
+    const resultData = await res.data.results;
+    return resultData;
   };
 
   const sleep = (ms: number) => {
@@ -28,22 +32,35 @@ function LiveSearch() {
     let currentQuery = true;
     const abortController = new AbortController();
 
-    const loadJokes = async () => {
-      if (!query) return setJokes([]);
+    const loadResults = async () => {
+      if (!query) return setResults([]);
 
       await sleep(350);
       if (currentQuery) {
-        const jokes = await getJokes(query, abortController);
-        setJokes(jokes);
+        const results = await getResults(query);
+        setResults(results);
       }
     };
-    loadJokes();
+    loadResults();
 
     return () => {
       currentQuery = false;
       abortController.abort();
     };
   }, [query]);
+
+  return (
+    <div className='search-container'>
+      <input
+        value={query}
+        ref={focusSearch}
+        onChange={(e) => setQuery(e.target.value)}
+        placeholder='Type something to search'
+        className='search-text'
+      />
+      <SearchListing results={results} />
+    </div>
+  );
 }
 
 export default LiveSearch;
