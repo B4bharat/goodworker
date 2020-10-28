@@ -9,11 +9,11 @@ import { ReactComponent as SearchIcon } from '../../assets/search.svg';
 interface Props {
   url: string;
   params: any;
-  handleClick: () => any;
+  handleClick: () => void;
   children?: any;
 }
 
-function LiveSearch(props: Props) {
+const LiveSearch: React.FC<Props> = (props) => {
   const { url, params, handleClick, children } = props;
   const [query, setQuery] = useState('');
   const [results, setResults] = useState([]);
@@ -68,9 +68,13 @@ function LiveSearch(props: Props) {
         onChange={(e) => setQuery(e.target.value)}
         className={styles.searchText}
       />
-      <SearchListing results={results} children={children} handleClick={handleClick} />
+      <SearchListing
+        results={results}
+        children={children}
+        handleClick={handleClick}
+      />
     </div>
   );
-}
+};
 
 export default LiveSearch;

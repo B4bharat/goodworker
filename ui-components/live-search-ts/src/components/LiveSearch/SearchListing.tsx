@@ -4,12 +4,12 @@ import ListItem from './ListItem';
 import styles from './SearchListing.module.scss';
 
 interface Props {
-  results: [];
+  results: any;
   handleClick: () => any;
   children?: any;
 }
 
-const SearchListing = (props: any) => {
+const SearchListing = (props: Props) => {
   const { results, children, handleClick } = props;
   let cards = <h3>Loading...</h3>;
 
