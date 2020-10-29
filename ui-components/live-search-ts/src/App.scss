@@ -54,6 +54,30 @@
   margin: 20px auto 0;
 }
 
+.inputCTA {
+  width: 135px;
+  height: 30px;
+  border-radius: 7px;
+  background-color: #91d18b;
+
+  text-align: left;
+  text-transform: capitalize;
+  color: #fff;
+
+  position: relative;
+}
+
+.icon {
+  position: absolute;
+  right: 10px;
+}
+
+.inputCTAhover {
+  background-color: #fff;
+  cursor: pointer;
+  color: #000;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

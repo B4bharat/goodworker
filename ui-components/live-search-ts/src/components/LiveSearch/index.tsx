@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { ReactNode, useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 
 import SearchListing from './SearchListing';
@@ -10,7 +10,7 @@ interface Props {
   url: string;
   params: any;
   handleClick: () => void;
-  children?: any;
+  children?: ReactNode;
 }
 
 const LiveSearch: React.FC<Props> = (props) => {
